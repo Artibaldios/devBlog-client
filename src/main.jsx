@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { RouterProvider, createBrowserRouter} from "react-router";
 import './index.css';
 import Homepage from './routes/Homepage.jsx';
-import PostlistPage from './routes/PostlistPage.jsx';
+import PostlistPage from './routes/PostListPage.jsx';
 import SinglePostPage from './routes/SinglePostPage.jsx';
 import WritePage from './routes/WritePage.jsx';
 import LoginPage from './routes/LoginPage.jsx';
