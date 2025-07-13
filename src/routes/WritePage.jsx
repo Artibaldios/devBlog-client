@@ -16,6 +16,12 @@ const Write = () => {
   const [video, setVideo] = useState("");
   const [progress, setProgress] = useState(0);
 
+  const formats = [
+    'bold', 'italic', 'underline', 'strike',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'video'
+  ];
+
   useEffect(() => {
     img && setValue((prev) => prev + `<p><image src="${img.url}"/></p>`);
   }, [img]);
@@ -126,6 +132,7 @@ const Write = () => {
             className="flex-1 rounded-xl bg-white shadow-md"
             value={value}
             onChange={setValue}
+            formats={formats}
             readOnly={0 < progress && progress < 100}
           />
         </div>

@@ -3,7 +3,7 @@ import Search from "./Search";
 
 const MainCategories = () => {
   return (
-    <div className="hidden md:flex bg-white rounded-3xl xl:rounded-full p-4 shadow-md items-center justify-center gap-8">
+    <div className="hidden md:flex w-auto h-auto md:flex bg-white rounded-3xl xl:rounded-full p-4 shadow-md items-center justify-center gap-8 overflow-x-hidden">
       {/* links */}
       <div className="flex-1 flex items-center justify-between flex-wrap">
         <Link
@@ -43,7 +43,7 @@ const MainCategories = () => {
           Marketing
         </Link>
       </div>
-      <span className="text-xl font-medium">|</span>
+      <span className="text-xl font-medium text-textColor">|</span>
       {/* search */}
       <Search/>
     </div>

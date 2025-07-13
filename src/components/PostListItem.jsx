@@ -5,7 +5,7 @@ import { format } from "timeago.js";
 const PostListItem = ({ post }) => {
 
   return (
-    <div className="flex flex-col xl:flex-row gap-8 mb-12">
+    <div className=" w-full flex flex-col xl:flex-row gap-4 xl:gap-8 mb-12">
       {/* image */}
       {post.img && (
         <div className="md:hidden xl:block xl:w-1/3 ">
@@ -25,10 +25,12 @@ const PostListItem = ({ post }) => {
           <span>{format(post.createdAt)}</span>
           <span> {post.visit} visits</span>
         </div>
-        <p>{post.desc}</p>
-        <Link to={`/${post.slug}`} className="underline text-textColor text-sm">
-          Read More
-        </Link>
+        <p className="line-clamp-3">{post.desc}</p>
+        <div className="w-[200px]">
+          <Link to={`/${post.slug}`} className="bg-secondary text-textColor font-semibold rounded-full px-4 py-2 ">
+            Read More
+          </Link>
+        </div>
       </div>
     </div>
   );

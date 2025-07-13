@@ -50,8 +50,11 @@ const Comments = ({ postId }) => {
     const data = {
       desc: formData.get("desc") || "",
     };
-
-    mutation.mutate(data);
+    if(!user){
+      toast.error("Not authenticated!");
+    } else{
+      mutation.mutate(data);
+    }
   };
 
   return (

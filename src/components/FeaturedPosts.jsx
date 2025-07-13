@@ -26,15 +26,19 @@ const FeaturedPosts = () => {
   }
 
   return (
-    <div className="mt-8 flex flex-col lg:flex-row gap-8">
+    <div className="mt-8 flex flex-col lg:flex-row gap-8 overflow-hidden">
       {/* First */}
-      <div className="w-full lg:w-1/2 flex flex-col gap-4">
+      <div className="w-full lg:w-1/2 flex flex-col gap-4 items-center md:items-start">
         {/* image */}
-        {posts[0].img && <Image
-          src={posts[3].img}
-          className="rounded-3xl object-cover"
-          w="895"
-        />}
+        {posts[3].img && (
+          <div className="md:w-full md:h-full aspect-video w-72 h-72">
+            <Image
+              src={posts[3].img}
+              className="rounded-3xl object-cover h-full"
+              //w="895"
+            />
+          </div>
+        )}
         {/* details */}
         <div className="flex items-center gap-4">
           <h1 className="font-semibold lg:text-lg">01.</h1>
@@ -42,12 +46,11 @@ const FeaturedPosts = () => {
           <span className="text-gray-500">{format(posts[3].createdAt)}</span>
         </div>
         {/* title */}
-        <Link
-          to={posts[3].slug}
+        <span
           className="text-xl lg:text-3xl font-semibold lg:font-bold"
         >
           {posts[3].title}
-        </Link>
+        </span>
       </div>
       {/* Others */}
       <div className="w-full lg:w-1/2 flex flex-col gap-4">
@@ -65,16 +68,15 @@ const FeaturedPosts = () => {
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">02.</h1>
-              <Link className="text-blue-800">{posts[1].category}</Link>
+              <Link className="text-textColor">{posts[1].category}</Link>
               <span className="text-gray-500 text-sm">{format(posts[1].createdAt)}</span>
             </div>
             {/* title */}
-            <Link
-              to={posts[1].slug}
+            <span
               className="text-base sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium"
             >
               {posts[1].title}
-            </Link>
+            </span>
           </div>
         </div>}
         {/* third */}
@@ -91,16 +93,15 @@ const FeaturedPosts = () => {
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">03.</h1>
-              <Link className="text-blue-800">{posts[2].category}</Link>
+              <Link className="text-textColor">{posts[2].category}</Link>
               <span className="text-gray-500 text-sm">{format(posts[2].createdAt)}</span>
             </div>
             {/* title */}
-            <Link
-              to={posts[1].slug}
+            <span
               className="text-base sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium"
             >
               {posts[2].title}
-            </Link>
+            </span>
           </div>
         </div>}
         {/* fourth */}
@@ -117,16 +118,15 @@ const FeaturedPosts = () => {
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">04.</h1>
-              <Link className="text-blue-800">{posts[0].category}</Link>
+              <Link className="text-textColor">{posts[0].category}</Link>
               <span className="text-gray-500 text-sm">{format(posts[0].createdAt)}</span>
             </div>
             {/* title */}
-            <Link
-              to={posts[0].slug}
+            <span
               className="text-base sm:text-lg md:text-2xl lg:text-xl xl:text-2xl font-medium"
             >
               {posts[0].title}
-            </Link>
+            </span>
           </div>
         </div>}
       </div>
