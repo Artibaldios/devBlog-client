@@ -3,6 +3,7 @@ import Image from "./Image";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { format } from "timeago.js";
+import Loader from "../components/Loader"
 
 const fetchPost = async () => {
   const res = await axios.get(
@@ -17,7 +18,7 @@ const FeaturedPosts = () => {
     queryFn: () => fetchPost(),
   });
 
-  if (isPending) return "loading...";
+  if (isPending) return <Loader />;
   if (error) return "Something went wrong!" + error.message;
 
   const posts = data.posts;

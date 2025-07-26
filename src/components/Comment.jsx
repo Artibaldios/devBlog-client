@@ -2,7 +2,7 @@ import { format } from "timeago.js";
 import Image from "./Image";
 import { useAuth, useUser } from "@clerk/clerk-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-//import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 import axios from "axios";
 
 const Comment = ({ comment, postId }) => {
@@ -27,11 +27,11 @@ const Comment = ({ comment, postId }) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["comments", postId] });
-      //toast.success("Comment deleted successfully");
+      toast.success("Comment deleted successfully");
     },
     onError: (error) => {
       console.log(error)
-      //toast.error(error.response.data);
+      toast.error(error.response.data);
     },
   });
 

@@ -4,6 +4,7 @@ import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useRef } from "react";
+import Loader from "../components/Loader";
 
 const fetchPosts = async (pageParam, searchParams) => {
   const searchParamsObj = Object.fromEntries([...searchParams]);
@@ -46,7 +47,7 @@ const PostList = ({scrollContainerRef}) => {
     }
   }, [data, isFetchingNextPage]);
 
-  if (isFetching && !isFetchingNextPage) return "Loading...";
+  if (isFetching && !isFetchingNextPage) return <Loader />;
 
   if (error) return "Something went wrong!";
 

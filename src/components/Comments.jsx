@@ -2,7 +2,7 @@ import axios from "axios";
 import Comment from "./Comment";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth, useUser } from "@clerk/clerk-react";
-//import { toast } from "react-toastify";
+import { toast } from 'react-hot-toast';
 
 const fetchComments = async (postId) => {
   const res = await axios.get(
@@ -37,10 +37,11 @@ const Comments = ({ postId }) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["comments", postId] });
+      toast.success("comment added!");
     },
     onError: (error) => {
       console.log(error)
-      //toast.error(error.response.data);
+      toast.error(error.response.data);
     },
   });
 
@@ -52,8 +53,7 @@ const Comments = ({ postId }) => {
       desc: formData.get("desc") || "",
     };
     if(!user){
-      console.log("Not authenticated!")
-      //toast.error("Not authenticated!");
+      toast.error("Not authenticated!");
     } else{
       mutation.mutate(data);
     }
@@ -69,9 +69,9 @@ const Comments = ({ postId }) => {
         <textarea
           name="desc"
           placeholder="Write a comment..."
-          className="w-full p-4 rounded-xl"
+          className="w-full p-4 rounded-xl bg-slate-50"
         />
-        <button className="bg-primary px-4 py-3 text-textColor font-medium rounded-xl">
+        <button className="bg-primary px-8 py-3 text-textColor font-medium rounded-xl cursor-pointer">
           Send
         </button>
       </form>

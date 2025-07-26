@@ -1,9 +1,11 @@
 @import "tailwindcss";
+
 @theme {
-  --color-primary: #e5b0fe; /* Use --color-{name} for your custom colors */
+  --color-primary: #e5b0fe;
   --color-secondary: #fae6ff;
-  --color-text-color: #51005c; /* Hyphenated names are common for CSS variables */
+  --color-textColor: #51005c;
 }
+
 body {
   background-color: ivory;
   box-sizing: border-box;
@@ -32,3 +34,18 @@ html,
   border: none !important;
 }
 
+
+.loader {
+  border: 10px solid #ffffff;
+  border-top: 10px solid #e5b0fe;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

@@ -1,60 +1,54 @@
 import { useAuth, useUser } from "@clerk/clerk-react";
-// "react-quill-new/dist/quill.snow.css";
-//import ReactQuill from "react-quill-new";
-// import { useMutation } from "@tanstack/react-query";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-//import { toast } from "react-toastify";
-//import Upload from "../components/Upload";
+import "react-quill-new/dist/quill.snow.css";
+import ReactQuill from "react-quill-new";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-hot-toast';
+import Upload from "../components/Upload";
 
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
-  // const [value, setValue] = useState("");
-  // const [cover, setCover] = useState("");
-  // const [img, setImg] = useState("");
-  // const [video, setVideo] = useState("");
-  // const [progress, setProgress] = useState(0);
+  const [value, setValue] = useState("");
+  const [cover, setCover] = useState("");
+  const [img, setImg] = useState("");
+  const [video, setVideo] = useState("");
+  const [progress, setProgress] = useState(0);
 
-  // const formats = [
-  //   'bold', 'italic', 'underline', 'strike',
-  //   'list', 'bullet', 'indent',
-  //   'link', 'image', 'video'
-  // ];
+  useEffect(() => {
+    img && setValue((prev) => prev + `<p><image src="${img.url}"/></p>`);
+  }, [img]);
 
-  // useEffect(() => {
-  //   img && setValue((prev) => prev + `<p><image src="${img.url}"/></p>`);
-  // }, [img]);
+  useEffect(() => {
+    video &&
+      setValue(
+        (prev) => prev + `<p><iframe class="ql-video" src="${video.url}"/></p>`
+      );
+  }, [video]);
 
-  // useEffect(() => {
-  //   video &&
-  //     setValue(
-  //       (prev) => prev + `<p><iframe class="ql-video" src="${video.url}"/></p>`
-  //     );
-  // }, [video]);
+  const navigate = useNavigate();
 
-  // const navigate = useNavigate();
+  const { getToken } = useAuth();
 
-  // const { getToken } = useAuth();
-
-  // const mutation = useMutation({
-  //   mutationFn: async (newPost) => {
-  //     const token = await getToken();
-  //     return axios.post(`${import.meta.env.VITE_API_URL}/posts`, newPost, {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     });
-  //   },
-  //   onSuccess: (res) => {
-  //    // toast.success("Post has been created");
-  //     navigate(`/${res.data.slug}`);
-  //   },
-  //   onError: (error) => {
-  //     console.log(error)
-  //    // toast.error(error.response.data);
-  //   },
-  // });
+  const mutation = useMutation({
+    mutationFn: async (newPost) => {
+      const token = await getToken();
+      return axios.post(`${import.meta.env.VITE_API_URL}/posts`, newPost, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    },
+    onSuccess: (res) => {
+      toast.success("Post has been created");
+      navigate(`/${res.data.slug}`);
+    },
+    onError: (error) => {
+      console.log(error)
+      toast.error(error.response.data);
+    },
+  });
 
   if (!isLoaded) {
     return <div className="">Loading...</div>;
@@ -64,41 +58,51 @@ const Write = () => {
     return <div className="">You should login!</div>;
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.target);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
 
-  //   const data = {
-  //     img: cover.filePath || "",
-  //     title: formData.get("title"),
-  //     category: formData.get("category"),
-  //     desc: formData.get("desc"),
-  //     content: value || "",
-  //   };
+    const data = {
+      img: cover.filePath || "",
+      title: formData.get("title"),
+      category: formData.get("category"),
+      desc: formData.get("desc"),
+      content: value || "",
+    };
+    if(!data.title){
+      toast.error("specify title");
+    } else if(!data.category){
+      toast.error("specify category");
+    } else if (!data.desc){
+      toast.error("specify descrition");
+    } else if (data.content === "<p><br></p>"){
+      toast.error("specify content");
+    } else {
+      mutation.mutate(data);
+    }
 
-  //   mutation.mutate(data);
-  // };
+  };
 
   return (
     <div className="h-[calc(100vh-64px)] md:h-[calc(100vh-80px)] flex flex-col gap-6 p-4">
       <h1 className="text-cl text-2xl font-semibold">Create a New Post</h1>
-      {/* <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 mb-6">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 mb-6">
         <Upload type="image" setProgress={setProgress} setData={setCover}>
           <div className="flex gap-4">
             <div className="flex items-center w-max p-2 shadow-md rounded-xl text-sm text-gray-500 bg-white">
             Add a cover image
           </div>
-          {cover && cover.url ? <img src={cover.url} alt="loadedImage" className="w-124 h-12"></img> : null}
+          {cover && cover.url ? <img src={cover.url} alt="loadedImage" className="w-24 h-12"></img> : null}
           </div>
         </Upload>
         <input
-          className="text-3xl font-semibold bg-transparent outline-none"
+          className="text-3xl font-semibold outline-none bg-white p-2 shadow-md rounded-xl" 
           type="text"
           placeholder="My Awesome Story"
           name="title"
         />
         <div className="flex items-center gap-4">
-          <label htmlFor="" className="text-sm">
+          <label htmlFor="" className="text-cl text-2xl font-semibold">
             Choose a category:
           </label>
           <select
@@ -133,20 +137,19 @@ const Write = () => {
             className="flex-1 rounded-xl bg-white shadow-md"
             value={value}
             onChange={setValue}
-            formats={formats}
+            //formats={formats}
             readOnly={0 < progress && progress < 100}
           />
         </div>
         <button
           disabled={mutation.isPending || (0 < progress && progress < 100)}
-          className="bg-primary text-textColor font-medium rounded-xl mt-4 p-2 w-36 disabled:bg-red-400 disabled:cursor-not-allowed"
+          className="bg-primary text-textColor font-medium rounded-xl mt-4 p-2 w-48 disabled:bg-red-400 disabled:cursor-not-allowed m-auto cursor-pointer"
         >
           {mutation.isPending ? "Loading..." : "Send"}
         </button>
-        {"Progress:" + progress}
         {mutation.isError && <span>{mutation.error.message}</span>}
         {value === "" && <span>Can&#39;t send without content</span> }
-      </form> */}
+      </form>
     </div>
   );
 };

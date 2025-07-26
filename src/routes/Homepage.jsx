@@ -17,7 +17,7 @@ const Homepage = () => {
             I know how hard it is to be a developer. Since the easy problems are always solved first, what is left behind are the hard problems.
           </p>
         </div>
-        <div className='w-2 h-2 md:w-48 md:h-48 hidden md:flex md:flex-row relative flex-shrink-0 overflow-hidden'>
+        <div className='w-2 h-2 md:w-48 md:h-48 hidden md:flex md:flex-row relative flex-shrink-0 overflow-hidden cursor-pointer'>
           <Link
             to="write"
             className="md:flex relative"
@@ -42,7 +42,7 @@ const Homepage = () => {
                 </textPath>
               </text>
             </svg>
-            <button className="absolute top-0 left-0 right-0 bottom-0 m-auto w-2 h-2 md:w-24 md:h-24 bg-primary rounded-full flex items-center justify-center">
+            <button className="absolute top-0 left-0 right-0 bottom-0 m-auto w-2 h-2 md:w-24 md:h-24 bg-primary rounded-full flex items-center justify-center cursor-pointer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

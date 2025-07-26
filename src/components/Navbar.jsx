@@ -64,11 +64,23 @@ const Navbar = () => {
         >
           Most Popular
         </Link>
-        <Link to="/login" onClick={handleClick}>
-          <button className="py-2 px-4 rounded-3xl bg-primary text-textColor">
-            Login 👋
-          </button>
+        <Link
+          to="/write"
+          onClick={handleClick}
+          className="hover:bg-primary hover:text-textColor rounded-full px-4 py-2"
+        >
+          Write Post
         </Link>
+        <SignedOut>
+          <Link to="/login">
+            <button className="py-2 px-4 rounded-3xl bg-primary text-textColor">
+              Login 👋
+            </button>
+          </Link>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </div>
       {/* DESKTOP MENU */}

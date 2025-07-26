@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom";
 import Image from "./Image";
 import { format } from "timeago.js";
+import errImg from '../assets/error-image.jpg';
 
 const PostListItem = ({ post }) => {
-
   return (
     <div className=" w-full flex flex-col xl:flex-row gap-4 xl:gap-8 mb-12">
       {/* image */}
-      {post.img && (
+      {post.img ? (
         <div className="md:hidden xl:block xl:w-1/3 ">
-          <Image src={post.img} className="rounded-2xl object-cover" w="450" h="270" />
+          <Image src={post.img} fallbackSrc={errImg} className="rounded-2xl object-cover" w="450" h="270" />
+        </div>
+      ): (
+        <div className="md:hidden xl:block xl:w-1/3 ">
+          <Image src="/logo_PD7dEFN9u.png" alt="blog Logo" fallbackSrc={errImg} className="rounded-2xl object-cover" w="450" h="270" />
         </div>
       )}
       {/* details */}

@@ -42,9 +42,13 @@ const SinglePostPage = () => {
           </div>
           <p className="text-textColor font-medium">{data.desc}</p>
         </div>
-        {data.img && (
+        {data.img ? (
           <div className="hidden sm:block w-2/5">
             <Image src={data.img} w="400" h="280" className="rounded-2xl" />
+          </div>
+        ): (
+          <div className="hidden sm:block w-2/5">
+            <Image src="/logo_PD7dEFN9u.png" w="400" h="280" className="rounded-2xl" />
           </div>
         )}
       </div>
