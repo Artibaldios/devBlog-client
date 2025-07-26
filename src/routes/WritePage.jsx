@@ -1,59 +1,60 @@
 import { useAuth, useUser } from "@clerk/clerk-react";
-import "react-quill-new/dist/quill.snow.css";
-import ReactQuill from "react-quill-new";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import Upload from "../components/Upload";
+// "react-quill-new/dist/quill.snow.css";
+//import ReactQuill from "react-quill-new";
+// import { useMutation } from "@tanstack/react-query";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+//import { toast } from "react-toastify";
+//import Upload from "../components/Upload";
 
 const Write = () => {
   const { isLoaded, isSignedIn } = useUser();
-  const [value, setValue] = useState("");
-  const [cover, setCover] = useState("");
-  const [img, setImg] = useState("");
-  const [video, setVideo] = useState("");
-  const [progress, setProgress] = useState(0);
+  // const [value, setValue] = useState("");
+  // const [cover, setCover] = useState("");
+  // const [img, setImg] = useState("");
+  // const [video, setVideo] = useState("");
+  // const [progress, setProgress] = useState(0);
 
-  const formats = [
-    'bold', 'italic', 'underline', 'strike',
-    'list', 'bullet', 'indent',
-    'link', 'image', 'video'
-  ];
+  // const formats = [
+  //   'bold', 'italic', 'underline', 'strike',
+  //   'list', 'bullet', 'indent',
+  //   'link', 'image', 'video'
+  // ];
 
-  useEffect(() => {
-    img && setValue((prev) => prev + `<p><image src="${img.url}"/></p>`);
-  }, [img]);
+  // useEffect(() => {
+  //   img && setValue((prev) => prev + `<p><image src="${img.url}"/></p>`);
+  // }, [img]);
 
-  useEffect(() => {
-    video &&
-      setValue(
-        (prev) => prev + `<p><iframe class="ql-video" src="${video.url}"/></p>`
-      );
-  }, [video]);
+  // useEffect(() => {
+  //   video &&
+  //     setValue(
+  //       (prev) => prev + `<p><iframe class="ql-video" src="${video.url}"/></p>`
+  //     );
+  // }, [video]);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { getToken } = useAuth();
+  // const { getToken } = useAuth();
 
-  const mutation = useMutation({
-    mutationFn: async (newPost) => {
-      const token = await getToken();
-      return axios.post(`${import.meta.env.VITE_API_URL}/posts`, newPost, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-    },
-    onSuccess: (res) => {
-      toast.success("Post has been created");
-      navigate(`/${res.data.slug}`);
-    },
-    onError: (error) => {
-      toast.error(error.response.data);
-    },
-  });
+  // const mutation = useMutation({
+  //   mutationFn: async (newPost) => {
+  //     const token = await getToken();
+  //     return axios.post(`${import.meta.env.VITE_API_URL}/posts`, newPost, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //   },
+  //   onSuccess: (res) => {
+  //    // toast.success("Post has been created");
+  //     navigate(`/${res.data.slug}`);
+  //   },
+  //   onError: (error) => {
+  //     console.log(error)
+  //    // toast.error(error.response.data);
+  //   },
+  // });
 
   if (!isLoaded) {
     return <div className="">Loading...</div>;
@@ -63,25 +64,25 @@ const Write = () => {
     return <div className="">You should login!</div>;
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData(e.target);
 
-    const data = {
-      img: cover.filePath || "",
-      title: formData.get("title"),
-      category: formData.get("category"),
-      desc: formData.get("desc"),
-      content: value || "",
-    };
+  //   const data = {
+  //     img: cover.filePath || "",
+  //     title: formData.get("title"),
+  //     category: formData.get("category"),
+  //     desc: formData.get("desc"),
+  //     content: value || "",
+  //   };
 
-    mutation.mutate(data);
-  };
+  //   mutation.mutate(data);
+  // };
 
   return (
     <div className="h-[calc(100vh-64px)] md:h-[calc(100vh-80px)] flex flex-col gap-6 p-4">
       <h1 className="text-cl text-2xl font-semibold">Create a New Post</h1>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 mb-6">
+      {/* <form onSubmit={handleSubmit} className="flex flex-col gap-6 flex-1 mb-6">
         <Upload type="image" setProgress={setProgress} setData={setCover}>
           <div className="flex gap-4">
             <div className="flex items-center w-max p-2 shadow-md rounded-xl text-sm text-gray-500 bg-white">
@@ -145,7 +146,7 @@ const Write = () => {
         {"Progress:" + progress}
         {mutation.isError && <span>{mutation.error.message}</span>}
         {value === "" && <span>Can&#39;t send without content</span> }
-      </form>
+      </form> */}
     </div>
   );
 };

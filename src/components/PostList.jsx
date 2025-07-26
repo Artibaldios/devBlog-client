@@ -24,7 +24,6 @@ const PostList = ({scrollContainerRef}) => {
     hasNextPage,
     isFetching,
     isFetchingNextPage,
-    refetch,
   } = useInfiniteQuery({
     queryKey: ["posts", searchParams.toString()],
     queryFn: ({ pageParam = 1 }) => fetchPosts(pageParam, searchParams),

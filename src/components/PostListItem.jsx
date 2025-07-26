@@ -9,11 +9,11 @@ const PostListItem = ({ post }) => {
       {/* image */}
       {post.img && (
         <div className="md:hidden xl:block xl:w-1/3 ">
-          <Image src={post.img} className="rounded-2xl object-cover" w="535" h="300" />
+          <Image src={post.img} className="rounded-2xl object-cover" w="450" h="270" />
         </div>
       )}
       {/* details */}
-      <div className="flex flex-col gap-4 xl:w-2/3">
+      <div className="flex flex-col gap-4 xl:w-3/5">
         <Link to={`/${post.slug}`} className="text-4xl font-semibold">
           {post.title}
         </Link>

@@ -62,7 +62,7 @@ const Homepage = () => {
       <MainCategories/>
       <FeaturedPosts />
       <div>
-        <h1 className='my-8 text-2xl text-textColor'>Recent Posts</h1>
+        <h1 className='my-8 text-gray-800 text-2xl md:text-2xl lg:text-4xl font-bold uppercase break-words'>Recent Posts</h1>
         <PostList scrollContainerRef={scrollContainerRef}/>
       </div>
     </div>

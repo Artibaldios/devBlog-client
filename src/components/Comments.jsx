@@ -2,7 +2,7 @@ import axios from "axios";
 import Comment from "./Comment";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useAuth, useUser } from "@clerk/clerk-react";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 
 const fetchComments = async (postId) => {
   const res = await axios.get(
@@ -39,7 +39,8 @@ const Comments = ({ postId }) => {
       queryClient.invalidateQueries({ queryKey: ["comments", postId] });
     },
     onError: (error) => {
-      toast.error(error.response.data);
+      console.log(error)
+      //toast.error(error.response.data);
     },
   });
 
@@ -51,7 +52,8 @@ const Comments = ({ postId }) => {
       desc: formData.get("desc") || "",
     };
     if(!user){
-      toast.error("Not authenticated!");
+      console.log("Not authenticated!")
+      //toast.error("Not authenticated!");
     } else{
       mutation.mutate(data);
     }

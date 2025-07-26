@@ -2,7 +2,7 @@ import { useUser, useAuth } from "@clerk/clerk-react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+//import { toast } from "react-toastify";
 
 const PostMenuActions = ({ post }) => {
   const { user } = useUser();
@@ -34,11 +34,12 @@ const PostMenuActions = ({ post }) => {
       });
     },
     onSuccess: () => {
-      toast.success("Post deleted successfully!");
+     // toast.success("Post deleted successfully!");
       navigate("/");
     },
     onError: (error) => {
-      toast.error(error.response.data);
+      console.log(error)
+      //toast.error(error.response.data);
     },
   });
 
@@ -59,7 +60,8 @@ const PostMenuActions = ({ post }) => {
       queryClient.invalidateQueries({ queryKey: ["savedPosts"] });
     },
     onError: (error) => {
-      toast.error(error.response.data);
+      console.log(error)
+      //toast.error(error.response.data);
     },
   });
 
@@ -82,7 +84,8 @@ const PostMenuActions = ({ post }) => {
       queryClient.invalidateQueries({ queryKey: ["post", post.slug] });
     },
     onError: (error) => {
-      toast.error(error.response.data);
+      console.log(error)
+     // toast.error(error.response.data);
     },
   });
 
