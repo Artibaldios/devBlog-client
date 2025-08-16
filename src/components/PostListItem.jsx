@@ -13,7 +13,7 @@ const PostListItem = ({ post }) => {
         </div>
       ): (
         <div className="md:hidden xl:block xl:w-1/3 ">
-          <Image src="/logo_PD7dEFN9u.png" alt="blog Logo" fallbackSrc={errImg} className="rounded-2xl object-cover" w="450" h="270" />
+          <Image src="/logo.webp" alt="blog Logo" fallbackSrc={errImg} className="rounded-2xl object-cover" w="450" h="270" />
         </div>
       )}
       {/* details */}

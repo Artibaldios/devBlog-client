@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
 const fetchPosts = async (pageParam, searchParams) => {
   const searchParamsObj = Object.fromEntries([...searchParams]);
   const res = await axios.get(`${import.meta.env.VITE_API_URL}/posts`, {
-    params: { page: pageParam, limit: 10, ...searchParamsObj },
+    params: { page: pageParam, limit: 5, ...searchParamsObj },
   });
   return res.data;
 };
