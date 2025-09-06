@@ -18,7 +18,7 @@ const FeaturedPosts = () => {
     queryFn: () => fetchPost(),
   });
 
-  if (isPending) return <Loader />;
+  if (isPending) return <Loader comp={"featured"}/>;
   if (error) return "Something went wrong!" + error.message;
 
   const posts = data.posts;
@@ -32,7 +32,7 @@ const FeaturedPosts = () => {
       <div className="w-full lg:w-1/2 flex flex-col gap-4 items-center md:items-start">
         {/* image */}
         {posts[3].img && (
-          <div className="md:w-full md:h-full aspect-video w-72 h-72">
+          <div className="md:w-full md:h-full w-72 h-72">
             <Image
               src={posts[3].img}
               className="rounded-3xl object-cover h-full"
@@ -61,11 +61,11 @@ const FeaturedPosts = () => {
             <Image
               src={posts[1].img}
               className="rounded-3xl object-contain w-full h-full"
-              w="298"
+              w="240"
             />
           </div>}
           {/* details and title */}
-          <div className="w-2/3">
+          <div className="w-2/3 flex flex-col justify-center">
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">02.</h1>
@@ -86,11 +86,11 @@ const FeaturedPosts = () => {
             <Image
               src={posts[2].img}
               className="rounded-3xl object-contain w-full h-full"
-              w="298"
+              w="240"
             />
           </div>}
           {/* details and title */}
-          <div className="w-2/3">
+          <div className="w-2/3 flex flex-col justify-center">
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">03.</h1>
@@ -111,11 +111,11 @@ const FeaturedPosts = () => {
             <Image
               src={posts[0].img}
               className="rounded-3xl object-contain w-full h-full"
-              w="298"
+              w="240"
             />
           </div>}
           {/* details and title */}
-          <div className="w-2/3">
+          <div className="w-2/3 flex flex-col justify-center">
             {/* details */}
             <div className="flex items-center gap-4 text-sm lg:text-base mb-4">
               <h1 className="font-semibold">04.</h1>

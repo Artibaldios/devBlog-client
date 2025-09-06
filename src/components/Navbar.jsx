@@ -14,7 +14,7 @@ const Navbar = () => {
     <div className={`w-full h-16 md:h-20 flex items-center justify-between relative`}>
       {/* LOGO */}
       <Link to="/" className="flex items-center gap-4 text-2xl font-bold z-50 ">
-        <Image src="/logo.png" alt="blog Logo" w={32} h={32} className="rounded-3xl"/>
+        <Image src="/logo.webp" alt="blog Logo" w={32} h={32} className="rounded-3xl"/>
         <span>Dev Blog</span>
       </Link>
       {/* MOBILE MENU */}
@@ -73,7 +73,7 @@ const Navbar = () => {
         </Link>
         <SignedOut>
           <Link to="/login">
-            <button className="py-2 px-4 rounded-3xl bg-primary text-textColor">
+            <button className="py-2 px-4 rounded-3xl bg-primary text-textColor cursor-pointer">
               Login 👋
             </button>
           </Link>
@@ -105,7 +105,7 @@ const Navbar = () => {
         </Link>
         <SignedOut>
           <Link to="/login">
-            <button className="py-2 px-4 rounded-3xl bg-primary text-white">
+            <button className="py-2 px-4 rounded-3xl bg-primary text-white cursor-pointer">
               Login 👋
             </button>
           </Link>
