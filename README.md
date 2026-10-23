@@ -1,12 +1,39 @@
-# React + Vite
+# Arti Dev Blog frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React and Vite frontend for the Arti Dev Blog. It communicates with the Express API, uses Clerk for authentication, and ImageKit for image delivery and uploads.
 
-Currently, two official plugins are available:
+## Quick start
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+```
 
-## Expanding the ESLint configuration
+Create `.env` with your local values:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```env
+VITE_API_URL=http://localhost:3000
+VITE_CLERK_PUBLISHABLE_KEY=pk_test_replace_me
+VITE_IK_URL_ENDPOINT=https://ik.imagekit.io/your-imagekit-id
+VITE_IK_PUBLIC_KEY=public_replace_me
+```
+
+Then start the app:
+
+```bash
+npm run dev
+```
+
+## Commands
+
+```bash
+npm run dev     # Start the Vite development server
+npm run lint    # Check source files with ESLint
+npm run build   # Create a production build
+npm run preview # Preview the production build locally
+```
+
+## Deployment
+
+Set `VITE_API_URL` to the deployed API URL, for example `https://arti-blog-api-server.up.railway.app`. Vite variables are compiled into the client bundle, so redeploy the frontend after changing them.
+
+Only publishable values belong in `VITE_*` variables. Do not put Supabase secret keys, ImageKit private keys, or Clerk webhook secrets in this project.
