@@ -8,13 +8,13 @@ const PostListItem = ({ post }) => {
     <div className=" w-full flex flex-col xl:flex-row gap-4 xl:gap-8 mb-12">
       {/* image */}
       {post.img ? (
-        <div className="md:hidden xl:block xl:w-1/3 ">
+        <Link to={`/${post.slug}`} className="md:hidden xl:block xl:w-1/3">
           <Image src={post.img} fallbackSrc={errImg} className="rounded-2xl object-cover" w="450" h="270" />
-        </div>
+        </Link>
       ): (
-        <div className="md:hidden xl:block xl:w-1/3 ">
+        <Link to={`/${post.slug}`} className="md:hidden xl:block xl:w-1/3">
           <Image src="/logo.webp" alt="blog Logo" fallbackSrc={errImg} className="rounded-2xl object-cover" w="450" h="270" />
-        </div>
+        </Link>
       )}
       {/* details */}
       <div className="flex flex-col gap-4 xl:w-3/5">
@@ -25,7 +25,7 @@ const PostListItem = ({ post }) => {
           <span>Written by</span>
           <Link className="text-textColor" to={`/posts?author=${post.user.username}`}>{post.user.username}</Link>
           <span>on</span>
-          <Link className="text-textColor">{post.category}</Link>
+          <Link className="text-textColor" to={`/posts?cat=${encodeURIComponent(post.category)}`}>{post.category}</Link>
           <span>{format(post.createdAt)}</span>
           <span> {post.visit} visits</span>
         </div>

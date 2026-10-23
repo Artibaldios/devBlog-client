@@ -45,7 +45,7 @@ const PostList = ({scrollContainerRef}) => {
     if (scrollContainerRef.current && !isFetchingNextPage) {
       scrollContainerRef.current.scrollTop = scrollPosition.current;
     }
-  }, [data, isFetchingNextPage]);
+  }, [data, isFetchingNextPage, scrollContainerRef]);
 
   if (isFetching && !isFetchingNextPage) return <Loader />;
 
