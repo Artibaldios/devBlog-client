@@ -55,7 +55,7 @@ const SinglePostPage = () => {
       {/* content */}
       <div className="flex flex-col md:flex-row gap-12 justify-between">
         {/* text */}
-        <div className="lg:text-lg flex flex-col gap-6 text-justify [&_a]:text-secondary [&_a]:underline [&_a:hover]:opacity-80">
+        <div className="lg:text-lg flex flex-col gap-6 text-justify [&_a]:text-textColor [&_a]:underline [&_a:hover]:opacity-80">
           {parse(data.content)}
         </div>
         {/* menu */}
